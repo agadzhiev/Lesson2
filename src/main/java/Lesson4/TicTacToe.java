@@ -104,12 +104,14 @@ public class TicTacToe {
     private static void turnHuman() {
         System.out.println("Human Turn!");
         int rowNumber, columnNumber;
-
-        rowNumber = in.nextInt() - 1;
-        columnNumber= in.nextInt() -1;
-        if (isCellFree(rowNumber, columnNumber)) {break;}
-        System.out.println("Cell isn't empty");
-
+        while(true) {
+            rowNumber = in.nextInt() - 1;
+            columnNumber = in.nextInt() - 1;
+            if (isCellFree(rowNumber, columnNumber)) {
+                break;
+            }
+            System.out.println("Cell isn't empty");
+        }
         MAP[rowNumber][columnNumber] = DOT_HUMAN;
         turnsCount++;
     }
