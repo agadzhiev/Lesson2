@@ -1,8 +1,8 @@
 package Lesson2;
 
 public class HomeWorkApp {
-    public class Main {
-        public static void main(String[] args){
+    public static void main (String[] args) {
+
             printThreeWords();
             checkSumSign();
             printColor();
@@ -27,7 +27,7 @@ public class HomeWorkApp {
                 System.out.println("Сумма положительная");}
                 else System.out.println("Сумма отрицательная");
             }
-        }
+
 
         static void  printColor() {
             int value = 100;
@@ -48,8 +48,6 @@ public class HomeWorkApp {
             if (a >= b) {
                 System.out.println("a >= b");}
         else System.out.println("a < b");
-
-
 
         }
 
