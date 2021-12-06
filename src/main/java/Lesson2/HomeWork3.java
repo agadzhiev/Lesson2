@@ -6,5 +6,10 @@ public class HomeWork3 {
     }
 
 
+    public static void ChangeDig(){
+
+
+    }
+
 
 }
