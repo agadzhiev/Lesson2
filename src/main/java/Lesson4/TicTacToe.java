@@ -23,10 +23,31 @@ public class TicTacToe {
     private static int turnsCount = 0;
 
     public static void turnGame() {
-        System.out.println("Game start!");
+        do {
+            System.out.println("\n\nGame start!");
+            init();
+            printMAP();
+            playGame();
+        } while (isContinueGame());
+        endGame();
+    }
+
+    private static void init() {
+        turnsCount = 0;
         initMAP();
-        printMAP();
-        playGame();
+    }
+
+    private static boolean isContinueGame() {
+        System.out.println("\nDo you want to try again? y\\n");
+        return switch(in.next()){
+            case "y", "yes", "+" -> true;
+            default -> false;
+        };
+    }
+
+    private static void endGame(){
+        in.close();
+        System.out.println("\nBye!");
     }
 
     private static void initMAP() {
@@ -105,7 +126,7 @@ public class TicTacToe {
         System.out.println("Human Turn!");
         int rowNumber, columnNumber;
         while(true) {
-            rowNumber = in.nextInt() - 1;
+            rowNumber = getvalidNumFromHuman() - 1;
             columnNumber = in.nextInt() - 1;
             if (isCellFree(rowNumber, columnNumber)) {
                 break;
@@ -114,6 +135,26 @@ public class TicTacToe {
         }
         MAP[rowNumber][columnNumber] = DOT_HUMAN;
         turnsCount++;
+    }
+
+    private static int getvalidNumFromHuman() {
+        while (true) {
+            System.out.print("Write coordinate from 1 to " +  SIZE+ " :");
+            if (in.hasNextInt()){
+                int n = in.nextInt();
+                if (isNumberValid(n)){
+                    return n;
+                }
+                System.out.println("\n Check value of the coordination");
+            }else {
+                in.next();
+                System.out.println("\nWrite a digit!");
+            }
+        }
+    }
+
+    private static boolean isNumberValid(int n) {
+        return n >=1 && n <=SIZE;
     }
 
     private static boolean isCellFree(int rowNumber, int columnNumber) {
