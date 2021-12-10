@@ -1,16 +1,12 @@
 package Lesson4;
 
-import jdk.swing.interop.SwingInterOpUtils;
-
-import java.util.Arrays;
-import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
 
 
 public class TicTacToe {
-    private static final int SIZE = 5;
+    private static final int SIZE = 3;
     private static final char DOT_EMPTY = '•';
     private static final char DOT_HUMAN = 'X';
     private static final char DOT_AI = 'O';
@@ -21,6 +17,8 @@ public class TicTacToe {
     private static final String HEADER_FIRST_SYMBOL = "∆";
     private static final String SPACE_MAP =" ";
     private static int turnsCount = 0;
+    private static int lastRow = 0;
+    private static int lastColumn = 0;
 
     public static void turnGame() {
         do {
@@ -90,7 +88,7 @@ public class TicTacToe {
         while (true){
             turnHuman();
             printMAP();
-            if (checkEnd(DOT_HUMAN)){
+            if (checkEnd(DOT_HUMAN, lastRow, lastColumn)){
                 break;
             }
 
@@ -134,7 +132,10 @@ public class TicTacToe {
             System.out.println("Cell isn't empty");
         }
         MAP[rowNumber][columnNumber] = DOT_HUMAN;
+        lastRow = rowNumber;
+        lastColumn = columnNumber;
         turnsCount++;
+
     }
 
     private static int getvalidNumFromHuman() {
@@ -162,8 +163,8 @@ public class TicTacToe {
     }
 
 
-    private static boolean checkEnd(char symbol) {
-        if(checkWin(symbol)){
+    private static boolean checkEnd(char symbol, int lastRow, int lastColumn) {
+        if(checkWin(symbol, lastRow, lastColumn)){
             if(symbol == DOT_HUMAN){
                 System.out.println("\nHuman Wins");
             }else {
@@ -179,8 +180,29 @@ public class TicTacToe {
     }
 
 
-    private static boolean checkWin(char symbol) {
+    private static boolean checkWin(char symbol, int lastRow, int lastColumn) {
+        int count = 0;
+        for (int i = 0; i < SIZE; i++) {
+            if (MAP[lastRow][i] == symbol) {
+                    count++;
 
+                } else {
+                    count = 0;
+                }
+            }
+        for (int i = 0; i < SIZE; i++) {
+            if (MAP[i][lastColumn] == symbol) {
+                count++;
+
+            } else {
+                count = 0;
+            }
+        }
+
+
+        if (count == 3){
+        return true;}
+        else {return false;}
     }
 
     private static boolean checkDraw(char symbol) {
