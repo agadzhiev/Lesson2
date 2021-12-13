@@ -185,24 +185,23 @@ public class TicTacToe {
         for (int i = 0; i < SIZE; i++) {
             if (MAP[lastRow][i] == symbol) {
                     count++;
-
+                if (count == 3){
+                    return true;}
                 } else {
                     count = 0;
                 }
             }
+
         for (int i = 0; i < SIZE; i++) {
             if (MAP[i][lastColumn] == symbol) {
                 count++;
-
+                if (count == 3){
+                    return true;}
             } else {
                 count = 0;
             }
         }
-
-
-        if (count == 3){
-        return true;}
-        else {return false;}
+        return false;
     }
 
     private static boolean checkDraw(char symbol) {
