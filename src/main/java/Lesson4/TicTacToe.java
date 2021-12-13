@@ -95,7 +95,7 @@ public class TicTacToe {
 
             turnAI();
             printMAP();
-            if (false/*проверка хода*/){
+            if (checkEnd(DOT_AI, lastRow, lastColumn)){
                 break;
             }
         }
