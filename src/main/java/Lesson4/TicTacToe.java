@@ -118,7 +118,7 @@ public class TicTacToe {
             }
             System.out.println("Cell isn't empty");
         }
-        MAP[rowNumber][columnNumber] = DOT_HUMAN;
+        MAP[rowNumber][columnNumber] = DOT_AI;
         lastRow = rowNumber;
         lastColumn = columnNumber;
         turnsCount++;
