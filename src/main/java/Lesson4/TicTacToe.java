@@ -110,17 +110,13 @@ public class TicTacToe {
 
         System.out.println("AI Turn!");
         int rowNumber, columnNumber;
-        while(true) {
-            rowNumber = getvalidNumFromHuman() - 1;
-            columnNumber = in.nextInt() - 1;
-            if (isCellFree(rowNumber, columnNumber)) {
-                break;
-            }
-            System.out.println("Cell isn't empty");
-        }
+
+        do {
+        rowNumber = random.nextInt(SIZE);
+        columnNumber= random.nextInt(SIZE);
+        }while(!isCellFree(rowNumber, columnNumber));
+
         MAP[rowNumber][columnNumber] = DOT_AI;
-        lastRow = rowNumber;
-        lastColumn = columnNumber;
         turnsCount++;
     }
 
